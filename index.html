@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diesel & Steel Fare Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>🚂 Diesel & Steel</h1>
+        <h2>Fare & Change Calculator</h2>
+
+        <!-- Route Direction Quick Tiles -->
+        <div class="form-group">
+            <label>Route Direction</label>
+            <div class="tile-group">
+                <input type="radio" name="route" id="route1" value="balTobul" checked>
+                <label for="route1">Balagtas to Bulakan</label>
+
+                <input type="radio" name="route" id="route2" value="bulTobal">
+                <label for="route2">Bulakan to Balagtas</label>
+            </div>
+        </div>
+
+        <!-- Station / Stop Quick Tiles -->
+        <div class="form-group">
+            <label>Station / Stop</label>
+            <div class="tile-group">
+                <input type="radio" name="station" id="st1" value="bagumbayan" checked>
+                <label for="st1">Bagumbayan</label>
+
+                <input type="radio" name="station" id="st2" value="Matungao">
+                <label for="st2">Matungao</label>
+
+                <input type="radio" name="station" id="st3" value="Panginay">
+                <label for="st3">Panginay</label>
+
+                <input type="radio" name="station" id="st4" value="balagtas">
+                <label for="st4">Balagtas</label>
+
+                <input type="radio" name="station" id="st5" value="WAWA">
+                <label for="st5">Wawa</label>
+            </div>
+        </div>
+
+        <!-- Passenger Count Quick Tiles -->
+        <div class="form-group">
+            <label>Number of Passengers</label>
+            <div class="tile-group">
+                <input type="radio" name="passengers" id="p1" value="1" checked>
+                <label for="p1">1</label>
+
+                <input type="radio" name="passengers" id="p2" value="2">
+                <label for="p2">2</label>
+
+                <input type="radio" name="passengers" id="p3" value="3">
+                <label for="p3">3</label>
+
+                <input type="radio" name="passengers" id="p4" value="4">
+                <label for="p4">4</label>
+
+                <input type="radio" name="passengers" id="p5" value="5">
+                <label for="p5">5</label>
+            </div>
+        </div>
+
+        <!-- Cash Received Quick Tiles -->
+        <div class="form-group">
+            <label>Cash Received (₱)</label>
+            <div class="tile-group">
+                <input type="radio" name="money" id="m20" value="20" checked>
+                <label for="m20">₱20</label>
+
+                <input type="radio" name="money" id="m50" value="50">
+                <label for="m50">₱50</label>
+
+                <input type="radio" name="money" id="m100" value="100">
+                <label for="m100">₱100</label>
+            </div>
+        </div>
+
+        <!-- Action Button Group Section -->
+        <div class="button-group">
+            <button type="button" class="btn btn-discount" id="seniorDiscount">Senior / PWD</button>
+            <button type="button" class="btn btn-normal" id="regularFare">Regular</button>
+        </div>
+
+        <!-- NEW: Dynamic Receipt Output Box Container -->
+        <div class="results-box">
+            <div class="output-text" id="output">Select parameters above and tap a fare type.</div>
+            <ul class="receipt-list">
+                <li id="receiptForexpense">
+                    <span>Expense:</span>
+                    <span>₱0.00</span>
+                </li>
+                <li id="totalChange">
+                    <span>Total Change:</span>
+                    <span>₱0.00</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

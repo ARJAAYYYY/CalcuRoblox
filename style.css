@@ -1,0 +1,187 @@
+/* Dark industrial theme for Roblox Diesel & Steel */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1c1e;
+    color: #e3e2e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Fixed minor typo from 100vi to 100vh */
+    margin: 0;
+    padding: 20px;
+}
+
+.calculator-container {
+    background-color: #2d3033;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid #43474a;
+}
+
+h1 {
+    font-size: 24px;
+    color: #ffb4a2;
+    margin: 0 0 5px 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 14px;
+    color: #919194;
+    margin: 0 0 25px 0;
+    text-align: center;
+    font-weight: 400;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #c4c6c9;
+    font-weight: 600;
+}
+
+select, input[type="number"] {
+    background-color: #1a1c1e;
+    border: 1px solid #43474a;
+    color: #e3e2e6;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+select:focus, input[type="number"]:focus {
+    border-color: #ffb4a2;
+}
+
+/* --- QUICK SELECT TILES CONFIGURATION --- */
+.tile-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+}
+
+.tile-group input[type="radio"] {
+    display: none; /* Hides the native circular radio selectors */
+}
+
+.tile-group label {
+    flex: 1;
+    min-width: 70px; /* Allows compact sizing for responsive rows */
+    background-color: #1a1c1e;
+    border: 1px solid #43474a;
+    color: #e3e2e6;
+    padding: 10px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    margin-bottom: 0; /* Resets the root label margin */
+}
+
+/* Hover over unselected industrial button tiles */
+.tile-group label:hover {
+    border-color: #ffb4a2;
+    background-color: #24272a;
+}
+
+/* Active pressed-down visual feedback style */
+.tile-group input[type="radio"]:checked + label {
+    background-color: #4f3730;
+    color: #ffb4a2;
+    border-color: #ffb4a2;
+    font-weight: bold;
+    box-shadow: inset 0 0 6px rgba(255, 180, 162, 0.2);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-discount {
+    background-color: #4f3730;
+    color: #ffb4a2;
+    border: 1px solid #ffb4a2;
+}
+
+.btn-discount:hover {
+    background-color: #65483f;
+}
+
+.btn-normal {
+    background-color: #ffb4a2;
+    color: #561f10;
+}
+
+.btn-normal:hover {
+    background-color: #ffc9bd;
+}
+
+.results-box {
+    background-color: #1a1c1e;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #ffb4a2;
+}
+
+.output-text {
+    font-size: 14px;
+    color: #c4c6c9;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.receipt-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.receipt-list li {
+    font-size: 16px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.receipt-list li:last-child {
+    margin-bottom: 0;
+    border-top: 1px dashed #43474a;
+    padding-top: 6px;
+    font-size: 18px;
+    color: #ffb4a2;
+}
