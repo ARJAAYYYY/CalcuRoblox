@@ -1,18 +1,13 @@
 
 const fareMatrix = {
     "bulTobal": { // BULAKAN - BALAGTAS (Top table)
-        "bagumbayan": { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] },
-        "Matungao":   { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] },
-        "Panginay":   { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] }, // Panginay GGT
-        "balagtas":   { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] }, // Panginay Balagtas
+        "samePrice":   { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] },
         "WAWA":       { regular: [16, 32, 48, 64, 80], discounted:  [14, 28, 42, 56, 70] }
     },
     "balTobul": { // BALAGTAS - BULAKAN (Bottom table)
-        "WAWA":       { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] },
-        "balagtas":   { regular: [14, 28, 42, 56, 70], discounted:[12, 24, 36, 48, 60] }, // Panginay Balagtas
-        "Panginay":   { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] }, // Panginay GGT
-        "Matungao":   { regular: [14, 28, 42, 56, 70], discounted: [12, 24, 36, 48, 60] },
-        "bagumbayan": { regular:  [16, 32, 48, 64, 80], discounted: [14, 28, 42, 56, 70] }
+        "bagumbayan":      { regular: [16, 32, 48, 64, 80], discounted:  [14, 28, 42, 56, 70] },
+        "samePrice":   { regular: [14, 28, 42, 56, 70], discounted:[12, 24, 36, 48, 60] }, // Panginay Balagtas
+
     }
 };
 
@@ -20,6 +15,26 @@ const getSelectedValue = (name) => {
     const activeRadio = document.querySelector(`input[name="${name}"]:checked`);
     return activeRadio ? activeRadio.value : null;
 };
+
+// UI Label Elements
+const labelSt1 = document.getElementById('lbl-st1');
+const labelSt2 = document.getElementById('lbl-st2');
+const routeRadios = document.querySelectorAll('input[name="route"]');
+
+// 1. Text UI Swapping Hook based on Route Direction Direction
+routeRadios.forEach(radio => {
+    radio.addEventListener('change', (event) => {
+        if (event.target.value === 'bulTobal') {
+            // Bulakan to Balagtas: Bagumbayan/Matungao/Panginay/Balagtas are the base stops (Box 1). Wawa is the far terminal (Box 2).
+            labelSt1.textContent = "Wawa";
+            labelSt2.textContent = "Bagumbayan, Matungao, Panginay, Balagtas";
+        } else { // balTobul
+            // Balagtas to Bulakan: Matungao/Panginay/Balagtas/Wawa become the base stops (Box 1). Bagumbayan shifts to the far terminal (Box 2).
+            labelSt1.textContent = "Bagumbayan";
+            labelSt2.textContent = "Matungao, Panginay, Balagtas, Wawa";
+        }
+    });
+});
 
 // DOM Output Elements
 const outputDiv = document.getElementById("output");
@@ -33,7 +48,7 @@ const btnNormal = document.getElementById("regularFare");
 // Calculation Processing
 function calculateFare(isDiscounted) {
     const currentRoute = getSelectedValue("route");
-    const currentStation = getSelectedValue("station");
+    const checkedStationBox = getSelectedValue("station"); // Reads 'st1' or 'st2'
     const passengerCount = parseInt(getSelectedValue("passengers"));
     const cashReceived = parseFloat(getSelectedValue("money"));
 
@@ -44,7 +59,7 @@ function calculateFare(isDiscounted) {
     }
 
     // Validate selections
-    if (!currentRoute || !currentStation || isNaN(passengerCount)) {
+    if (!currentRoute || !checkedStationBox || isNaN(passengerCount)) {
         outputDiv.innerHTML = "⚠️ Please select a route, station, and passenger count.";
         return;
     }
@@ -52,6 +67,15 @@ function calculateFare(isDiscounted) {
     if (isNaN(cashReceived) || cashReceived < 0) {
         outputDiv.innerHTML = "⚠️ Please select a valid cash amount.";
         return;
+    }
+
+    // 2. MATRIX TRANSLATION KEY MAPPING
+    // Maps st1 and st2 selections to your matrix keys depending on the chosen route
+    let currentStation = "";
+    if (currentRoute === 'bulTobal') {
+        currentStation = (checkedStationBox === 'st1') ? 'WAWA' : 'samePrice';
+    } else { // balTobul
+        currentStation = (checkedStationBox === 'st1') ? 'bagumbayan' : 'samePrice';
     }
 
     const passengerIndex = passengerCount - 1;
